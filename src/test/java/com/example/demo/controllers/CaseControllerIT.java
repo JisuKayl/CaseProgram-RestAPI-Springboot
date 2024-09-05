@@ -1,4 +1,4 @@
-package com.controllers;
+package com.example.demo.controllers;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,8 +14,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.http.MediaType;
 
 import com.example.demo.TestData;
-import com.example.domain.Case;
-import com.example.services.CaseService;
+import com.example.demo.domain.Case;
+import com.example.demo.services.CaseService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 // import jakarta.persistence.criteria.CriteriaBuilder.Case;
@@ -46,7 +46,7 @@ public class CaseControllerIT {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.fileNumber").value(case1.getFileNumber()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.caseTitle").value(case1.getCaseTitle()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.caseNumber").value(case1.getCaseNumber()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.caseStatus").value(case1.getCaseStatus()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.caseStatus").value(case1.getCaseStatus().name()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.kindOfCase").value(case1.getKindOfCase()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.courtCase").value(case1.getCourtCase()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.engagedDate").value(case1.getEngagedDate()))
@@ -74,7 +74,7 @@ public class CaseControllerIT {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.fileNumber").value(case1.getFileNumber()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.caseTitle").value(case1.getCaseTitle()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.caseNumber").value(case1.getCaseNumber()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.caseStatus").value(case1.getCaseStatus()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.caseStatus").value(case1.getCaseStatus().name()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.kindOfCase").value(case1.getKindOfCase()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.courtCase").value(case1.getCourtCase()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.engagedDate").value(case1.getEngagedDate()))
@@ -84,7 +84,7 @@ public class CaseControllerIT {
 
     @Test
     public void testThatRetrieveCaseReturns404WhenCaseNotFound() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/case/1"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/case/3"))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
@@ -93,13 +93,13 @@ public class CaseControllerIT {
         final Case case1 = TestData.testCase();
         caseService.save(case1);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("case" + case1.getId()))
+        mockMvc.perform(MockMvcRequestBuilders.get("/case/" + case1.getId()))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(case1.getId()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.fileNumber").value(case1.getFileNumber()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.caseTitle").value(case1.getCaseTitle()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.caseNumber").value(case1.getCaseNumber()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.caseStatus").value(case1.getCaseStatus()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.caseStatus").value(case1.getCaseStatus().name()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.kindOfCase").value(case1.getKindOfCase()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.courtCase").value(case1.getCourtCase()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.engagedDate").value(case1.getEngagedDate()))
@@ -123,22 +123,22 @@ public class CaseControllerIT {
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/case"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(case1.getId()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.fileNumber").value(case1.getFileNumber()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.caseTitle").value(case1.getCaseTitle()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.caseNumber").value(case1.getCaseNumber()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.caseStatus").value(case1.getCaseStatus()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.kindOfCase").value(case1.getKindOfCase()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.courtCase").value(case1.getCourtCase()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.engagedDate").value(case1.getEngagedDate()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.location").value(case1.getLocation()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.clientName").value(case1.getClientName()));
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value(case1.getId()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].fileNumber").value(case1.getFileNumber()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].caseTitle").value(case1.getCaseTitle()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].caseNumber").value(case1.getCaseNumber()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].caseStatus").value(case1.getCaseStatus().name()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].kindOfCase").value(case1.getKindOfCase()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].courtCase").value(case1.getCourtCase()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].engagedDate").value(case1.getEngagedDate()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].location").value(case1.getLocation()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].clientName").value(case1.getClientName()));
     }
 
     @Test
     public void testThatHttp204IsReturnedWhenCaseDoesntExist() throws Exception {
         mockMvc
-                .perform(MockMvcRequestBuilders.delete("/case/1"))
+                .perform(MockMvcRequestBuilders.delete("/case/3"))
                 .andExpect(MockMvcResultMatchers.status().isNoContent());
     }
 

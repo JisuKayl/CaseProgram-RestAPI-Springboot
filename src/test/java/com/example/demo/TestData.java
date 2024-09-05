@@ -1,8 +1,13 @@
 package com.example.demo;
 
-import com.example.constants.CaseStatus;
-import com.example.domain.Case;
-import com.example.domain.CaseEntity;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+
+import com.example.demo.constants.CaseStatus;
+import com.example.demo.domain.Case;
+import com.example.demo.domain.CaseEntity;
 
 public final class TestData {
 
@@ -11,8 +16,10 @@ public final class TestData {
     }
 
     public static Case testCase() {
+        // Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse("2024-08-01");
+        // Date currenDate = new Date();
         return Case.builder()
-                .id("1")
+                .id("3")
                 .fileNumber("035-01-CA")
                 .caseTitle("Complainant vs Respondent")
                 .caseNumber(10)
@@ -25,9 +32,12 @@ public final class TestData {
                 .build();
     }
 
-    public static CaseEntity testCaseEntity() {
+    public static CaseEntity testCaseEntity() throws ParseException {
+        // Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse("2024-08-01");
+        // LocalDate date = LocalDate.parse("2018-05-05");
+        // Date currenDate = new Date();
         return CaseEntity.builder()
-                .id("1")
+                .id("3")
                 .fileNumber("035-01-CA")
                 .caseTitle("Complainant vs Respondent")
                 .caseNumber(10)

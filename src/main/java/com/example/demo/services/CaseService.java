@@ -1,10 +1,10 @@
-package com.example.services;
+package com.example.demo.services;
 
 import java.util.Optional;
 
-import java.util.List;
+import com.example.demo.domain.Case;
 
-import com.example.domain.Case;
+import java.util.List;
 
 public interface CaseService {
     // Case create(Case case1);

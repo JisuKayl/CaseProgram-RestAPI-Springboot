@@ -1,4 +1,4 @@
-package com.example.services.Impl;
+package com.example.demo.services.Impl;
 
 import java.util.Optional;
 
@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.example.domain.Case;
-import com.example.domain.CaseEntity;
-import com.example.repositories.CaseRepository;
-import com.example.services.CaseService;
+import com.example.demo.domain.Case;
+import com.example.demo.domain.CaseEntity;
+import com.example.demo.repositories.CaseRepository;
+import com.example.demo.services.CaseService;
 
 import java.util.List;
 import java.util.stream.Collectors;

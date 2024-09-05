@@ -1,11 +1,11 @@
-package com.example.repositories;
+package com.example.demo.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.domain.CaseEntity;
+import com.example.demo.domain.CaseEntity;
 
 @Repository
 public interface CaseRepository extends JpaRepository<CaseEntity, String> {
-    
+
 }

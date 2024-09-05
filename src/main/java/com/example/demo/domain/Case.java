@@ -1,35 +1,35 @@
-package com.example.domain;
+package com.example.demo.domain;
 
-import java.sql.Date;
+import java.util.Date;
 
-import jakarta.persistence.Entity;
+import com.example.demo.constants.CaseStatus;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.example.constants.CaseStatus;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
-@Table(name = "case")
-public class CaseEntity {
+public class Case {
 
-    @Id
     private String id;
     private String fileNumber;
     private String caseTitle;
     private Integer caseNumber;
     @Enumerated(EnumType.STRING)
-        private CaseStatus caseStatus;
+    private CaseStatus caseStatus;
     private String kindOfCase;
     private String courtCase;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date engagedDate;
     private String location;
     private String clientName;

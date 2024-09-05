@@ -1,4 +1,4 @@
-package com.controllers;
+package com.example.demo.controllers;
 
 import java.util.Optional;
 
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.example.domain.Case;
-import com.example.services.CaseService;
+import com.example.demo.domain.Case;
+import com.example.demo.services.CaseService;
 
 @RestController
 public class CaseController {
@@ -51,7 +51,7 @@ public class CaseController {
     }
 
     @DeleteMapping(path = "/case/{id}")
-    public ResponseEntity deleteCase(@PathVariable final String id) {
+    public ResponseEntity<Case> deleteCase(@PathVariable final String id) {
         caseService.deleteCaseById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
