@@ -1,4 +1,4 @@
-# Case Program - REST API (Spring Boot) Test
+# Case Program - REST API (Spring Boot)
 
 ## Overview
 Case Program is a REST API built with Spring Boot that manages legal cases. It provides endpoints for creating, retrieving, listing, and deleting case records.
